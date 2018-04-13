@@ -34,8 +34,9 @@ public class MessengerActivity extends AppCompatActivity {
             add(new Message(R.string.katya, "Archer, you up?", "2:20 am", true));
             add(new Message(R.string.user, "no", "2:22 am", false));
             add(new Message(R.string.nikolai, "Omg Katya you're being so transparent...", "7:16 am", true));
-            add(new Message(R.string.katya, "Hey Archer", "1:05 pm", true));
-            add(new Message(R.string.katya, "What are you up to?", "1:05 pm", true));
+            add(new Message(R.string.crenshaw, "LOL you should deport her", "7:28 am", true));
+            add(new Message(R.string.user, "Why am I in this gc?", "7:48 am", false));
+            add(new Message(R.string.katya, "DEPORT me!? Where tf would you send me!?? I'm already in Russia", "8:02 am", true));
             add(new Message(R.string.user, "Mind your own goddamn business", "1:10 pm", false));
         }};
 

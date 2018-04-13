@@ -40,6 +40,9 @@ public class MessageHolder extends RecyclerView.ViewHolder {
                 case R.string.nikolai:
                     mProfileImage.setImageResource(R.drawable.nikolai_jakov);
                     break;
+                case R.string.crenshaw:
+                    mProfileImage.setImageResource(R.drawable.crenshaw);
+                    break;
             }
         }
     }
