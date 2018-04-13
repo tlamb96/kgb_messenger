@@ -3,27 +3,27 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.tlamb96.kgbmessenger.com.tlamb96.kgbmessenger.MessengerActivity">
+tools:context="com.tlamb96.kgbmessenger.MessengerActivity">
 
 <android.support.v7.widget.RecyclerView
     android:id="@+id/reyclerview_message_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="60dp"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     />
 
 <!-- A horizontal line between the chatbox and RecyclerView -->
-<View
-    android:layout_width="0dp"
-    android:layout_height="2dp"
-    android:background="#dfdfdf"
-    android:layout_marginBottom="0dp"
-    app:layout_constraintBottom_toTopOf="@+id/layout_chatbox"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    />
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#dfdfdf"
+        app:layout_constraintBottom_toTopOf="@+id/layout_chatbox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 <LinearLayout
     android:id="@+id/layout_chatbox"

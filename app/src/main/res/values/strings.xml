@@ -10,4 +10,6 @@
     <string name="nikolai_agent_id">021</string>
     <string name="crenshaw">Crenshaw</string>
     <string name="crenshaw_agent_id">025</string>
+    <string name="boris">Boris</string>
+    <string name="boris_agent_id">046</string>
 </resources>

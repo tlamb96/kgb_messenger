@@ -37,6 +37,8 @@ public class MessengerActivity extends AppCompatActivity {
             add(new Message(R.string.crenshaw, "LOL you should deport her", "7:28 am", true));
             add(new Message(R.string.user, "Why am I in this gc?", "7:48 am", false));
             add(new Message(R.string.katya, "DEPORT me!? Where tf would you send me!?? I'm already in Russia", "8:02 am", true));
+            add(new Message(R.string.boris, "Pls don't deport me", "8:05 am", true));
+            add(new Message(R.string.katya, "Boris no one is talking about you", "8:05 am", true));
             add(new Message(R.string.user, "Mind your own goddamn business", "1:10 pm", false));
         }};
 
@@ -45,6 +47,7 @@ public class MessengerActivity extends AppCompatActivity {
         mMessageListAdapter = new MessageListAdapter(this, mMessages);
         mMessagesRecyclerView.setAdapter(mMessageListAdapter);
         mMessagesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mMessagesRecyclerView.setNestedScrollingEnabled(false);
     }
 
     public String getCurrentHoursMinutes() {
