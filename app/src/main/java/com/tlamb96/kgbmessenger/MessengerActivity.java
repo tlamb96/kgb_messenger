@@ -31,11 +31,12 @@ public class MessengerActivity extends AppCompatActivity {
         final String katya = getResources().getString(R.string.katya),
                 archer = getResources().getString(R.string.user);
         mMessages = new ArrayList<Message>() {{
-            add(new Message(katya, "You up?", "2:20 am", true));
-            add(new Message(archer, "no", "2:22 am", false));
-            add(new Message(katya, "Hey Archer", "1:05 pm", true));
-            add(new Message(katya, "What are you up to?", "1:05 pm", true));
-            add(new Message(archer, "Mind your own goddamn business", "1:10 pm", false));
+            add(new Message(R.string.katya, "Archer, you up?", "2:20 am", true));
+            add(new Message(R.string.user, "no", "2:22 am", false));
+            add(new Message(R.string.nikolai, "Omg Katya you're being so transparent...", "7:16 am", true));
+            add(new Message(R.string.katya, "Hey Archer", "1:05 pm", true));
+            add(new Message(R.string.katya, "What are you up to?", "1:05 pm", true));
+            add(new Message(R.string.user, "Mind your own goddamn business", "1:10 pm", false));
         }};
 
         // Setup the recycler view that displays the individual text messages.
@@ -62,7 +63,7 @@ public class MessengerActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(textMessage = messageTextbox.getText().toString())) {
             return;
         }
-        mMessages.add(new Message(getResources().getString(R.string.user), textMessage, getCurrentHoursMinutes(), false));
+        mMessages.add(new Message(R.string.user, textMessage, getCurrentHoursMinutes(), false));
         mMessageListAdapter.notifyDataSetChanged();
         messageTextbox.setText("");
     }

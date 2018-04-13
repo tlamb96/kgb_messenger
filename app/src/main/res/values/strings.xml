@@ -2,8 +2,10 @@
     <string name="app_name">KGB Messenger</string>
 
     <!-- Agent info -->
-    <string name="katya">Katya Kazanova</string>
-    <string name="katya_agent_id">041</string>
     <string name="user">Sterling Archer</string>
     <string name="agent_id">086</string>
+    <string name="katya">Katya Kazanova</string>
+    <string name="katya_agent_id">041</string>
+    <string name="nikolai">Nikolai Jakov</string>
+    <string name="nikolai_agent_id">041</string>
 </resources>

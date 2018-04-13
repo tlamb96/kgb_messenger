@@ -5,10 +5,11 @@ package com.tlamb96.kgbmessenger.pojo;
  */
 
 public class Message {
-    private String mMessage, mUser, mTimestamp;
+    private int mUser; // The id of the strings.xml entry that contains the user's name.
+    private String mMessage, mTimestamp;
     private boolean mIsReceived;
 
-    public Message(String user, String message, String timestamp, boolean isReceived) {
+    public Message(int user, String message, String timestamp, boolean isReceived) {
         mUser = user;
         mMessage = message;
         mTimestamp = timestamp;
@@ -19,7 +20,7 @@ public class Message {
         return mMessage;
     }
 
-    public String getUser() {
+    public int getUser() {
         return mUser;
     }
 
