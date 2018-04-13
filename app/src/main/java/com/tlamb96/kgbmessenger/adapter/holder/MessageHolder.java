@@ -26,7 +26,7 @@ public class MessageHolder extends RecyclerView.ViewHolder {
 
     public void bind(Message message) {
         messageText.setText(message.getMessage());
-        timeText.setText("time goes here");
+        timeText.setText(message.getTimestamp());
 
         if(message.isReceived()) {
             nameText.setText(message.getUser());

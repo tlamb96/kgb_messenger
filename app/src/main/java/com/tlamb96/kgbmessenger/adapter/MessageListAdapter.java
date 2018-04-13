@@ -60,16 +60,6 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             return;
         }
         ((MessageHolder) holder).bind(message);
-        /*
-        Log.d(TAG, "onBindViewHolder "+mMessageList.get(position).getMessage());
-        switch (holder.getItemViewType()) {
-            case VIEW_TYPE_MESSAGE_RECEIVED:
-                ((MessageHolder) holder).bind(message, true);
-            case VIEW_TYPE_MESSAGE_SENT:
-                ((MessageHolder) holder).bind(message);
-                break;
-        }
-        */
     }
 
     // Determines the appropriate ViewType according to the sender of the message.
@@ -85,50 +75,4 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             return VIEW_TYPE_MESSAGE_SENT;
         }
     }
-
-    /*
-    private class SentMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, timeText;
-
-        SentMessageHolder(View itemView) {
-            super(itemView);
-
-            messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
-        }
-
-        void bind(Message message) {
-            messageText.setText(message.getMessage());
-
-            // Format the stored timestamp into a readable String using method.
-            timeText.setText("Time here 2");
-        }
-    }
-
-    private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, timeText, nameText;
-        ImageView profileImage;
-
-        ReceivedMessageHolder(View itemView) {
-            super(itemView);
-
-            messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
-            nameText = (TextView) itemView.findViewById(R.id.text_message_name);
-            profileImage = (ImageView) itemView.findViewById(R.id.image_message_profile);
-        }
-
-        void bind(Message message) {
-            messageText.setText(message.getMessage());
-
-            // Format the stored timestamp into a readable String using method.
-            timeText.setText("time here 3");
-
-            nameText.setText(message.getUser());
-
-            // Insert the profile image from the URL into the ImageView.
-            //Utils.displayRoundImageFromUrl(mContext, message.getSender().getProfileUrl(), profileImage);
-        }
-    }
-    */
 }
