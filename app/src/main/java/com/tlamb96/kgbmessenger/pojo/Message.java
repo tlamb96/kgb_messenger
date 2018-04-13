@@ -1,4 +1,4 @@
-package com.tlamb96.spetsnazmessenger.pojo;
+package com.tlamb96.kgbmessenger.pojo;
 
 /**
  * Created by Tyler on 4/11/18.

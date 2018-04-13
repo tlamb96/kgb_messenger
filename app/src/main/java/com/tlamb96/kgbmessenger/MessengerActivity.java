@@ -1,4 +1,4 @@
-package com.tlamb96.spetsnazmessenger;
+package com.tlamb96.kgbmessenger;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
-import com.tlamb96.spetsnazmessenger.adapter.MessageListAdapter;
-import com.tlamb96.spetsnazmessenger.pojo.Message;
+import com.tlamb96.kgbmessenger.pojo.Message;
+import com.tlamb96.kgbmessenger.adapter.MessageListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

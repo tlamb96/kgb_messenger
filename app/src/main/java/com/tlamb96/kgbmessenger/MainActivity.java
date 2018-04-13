@@ -1,4 +1,4 @@
-package com.tlamb96.spetsnazmessenger;
+package com.tlamb96.kgbmessenger;
 
 import android.content.Intent;
 import android.os.Bundle;

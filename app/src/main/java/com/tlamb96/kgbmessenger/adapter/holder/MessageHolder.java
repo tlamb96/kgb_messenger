@@ -1,12 +1,12 @@
-package com.tlamb96.spetsnazmessenger.adapter.holder;
+package com.tlamb96.kgbmessenger.adapter.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tlamb96.spetsnazmessenger.R;
-import com.tlamb96.spetsnazmessenger.pojo.Message;
+import com.tlamb96.kgbmessenger.pojo.Message;
+import com.tlamb96.kgbmessenger.R;
 
 /**
  * Created by Tyler on 4/11/18.

@@ -1,4 +1,4 @@
-package com.tlamb96.spetsnazmessenger;
+package com.tlamb96.kgbmessenger;
 
 import org.junit.Test;
 
