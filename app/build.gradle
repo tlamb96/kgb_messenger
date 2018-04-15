@@ -28,4 +28,6 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     // Used for text message timestamps.
     implementation 'net.danlew:android.joda:2.9.9.3'
+    // Used for Java 8 streams. Needed because older phone's don't support Java 8.
+    implementation 'com.annimon:stream:1.2.0'
 }
