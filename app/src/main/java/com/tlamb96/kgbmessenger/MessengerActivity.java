@@ -168,7 +168,7 @@ public class MessengerActivity extends AppCompatActivity {
         if(hardHash(textMessage.toString()).equals(mAskBorrisNicely)) {
             Log.d(TAG, "Successfully asked Boris nicely for the password.");
             mUserAskBorisNicely = textMessage.toString();
-            //
+            // Print out the flag: FLAG{p455w0rd_P134SE}
             mMessages.add(new Message(R.string.boris, "Wow, no one has ever been so nice to me! Here you go friend: FLAG{"+generateFlag()+"}", getCurrentHoursMinutes(), true));
             mMessageListAdapter.notifyDataSetChanged();
         }
