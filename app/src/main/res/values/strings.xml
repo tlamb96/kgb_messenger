@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Spetsnaz Messenger</string>
+    <string name="app_name">KGB Messenger</string>
+
+    <!-- Agent info -->
+    <string name="user">Sterling Archer</string>
+    <string name="agent_id">086</string>
+    <string name="katya">Katya Kazanova</string>
+    <string name="katya_agent_id">041</string>
+    <string name="nikolai">Nikolai Jakov</string>
+    <string name="nikolai_agent_id">021</string>
+    <string name="crenshaw">Crenshaw</string>
+    <string name="crenshaw_agent_id">025</string>
+    <string name="boris">Boris</string>
+    <string name="boris_agent_id">046</string>
 </resources>
