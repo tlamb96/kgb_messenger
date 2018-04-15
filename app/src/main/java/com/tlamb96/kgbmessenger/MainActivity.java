@@ -46,6 +46,32 @@ public class MainActivity extends AppCompatActivity {
             leftSpacer.setVisibility(View.GONE);
         }
 
+        // Checks an environment variable to see who the user is. Again, this isn't really a thing
+        // in Android but it's something that some people might skip over expecting the strings
+        // to be "Sterling Archer" when it's really the Base 64 encoded flag: FLAG{57ERL1NG_4RCH3R}.
+        String user = System.getenv("USER");
+        if(userHome == null || userHome.isEmpty() || !userHome.equals(getResources().getString(R.string.User))) {
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle("Integrity Error");
+            alertDialog.setMessage("Must be on the user whitelist.");
+            alertDialog.setCancelable(false);
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "EXIT",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    });
+            alertDialog.show();
+
+            // Center the "EXIT" button in a slightly hacky way.
+            final Button button = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+            LinearLayout parent = (LinearLayout) button.getParent();
+            parent.setGravity(Gravity.CENTER_HORIZONTAL);
+            View leftSpacer = parent.getChildAt(1);
+            leftSpacer.setVisibility(View.GONE);
+        }
+
         JodaTimeAndroid.init(this);
     }
 
