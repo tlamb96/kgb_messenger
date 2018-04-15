@@ -60,7 +60,6 @@ public class MessengerActivity extends AppCompatActivity {
         mMessageListAdapter = new MessageListAdapter(this, mMessages);
         mMessagesRecyclerView.setAdapter(mMessageListAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        //linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         mMessagesRecyclerView.setLayoutManager(linearLayoutManager);
         mMessagesRecyclerView.setNestedScrollingEnabled(false);
@@ -68,12 +67,7 @@ public class MessengerActivity extends AppCompatActivity {
 
     public String getCurrentHoursMinutes() {
         DateTime dateTime = new DateTime();
-        return String.format("%02d:%d %s",
-                // Probably incorrect because JODA Android is annoying compared to the normal JODA.
-                dateTime.getHourOfDay() == 12 ? 12 : dateTime.getHourOfDay()%12,
-                dateTime.getMinuteOfHour(),
-                dateTime.getHourOfDay() <= 12 ? "am" :"pm"
-        );
+        return dateTime.toString("hh:mm a");
     }
 
     // Called when the send button is pressed.
