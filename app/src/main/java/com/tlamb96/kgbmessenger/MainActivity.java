@@ -23,24 +23,26 @@ public class MainActivity extends AppCompatActivity {
         String userHome = System.getProperty("user.home");
         String user = System.getenv("USER");
 
+        // TODO: uncomment if/else stmts before release!!
+
         // Exit if the user.home property for the app does not equal "Russia". The user.home
         // property has nothing to do with the phones physical location, but I needed a check that
         // would always fail. This should probably be patched/removed to solve this challenge.
-        if(userHome == null || userHome.isEmpty() || !userHome.equals("Russia")) {
+        //if(userHome == null || userHome.isEmpty() || !userHome.equals("Russia")) {
             showExitAlertDialog("Integrity Error", "This app can only run on Russian devices.");
-        }
+       // }
         // Checks an environment variable to see who the user is. Again, this isn't really a thing
         // in Android but it's something that some people might skip over expecting the strings
         // to be "Sterling Archer" when it's really the Base 64 encoded flag: FLAG{57ERL1NG_4RCH3R}.
-        else if(user == null || user.isEmpty() || !user.equals(getResources().getString(R.string.User))) {
+        //else if(user == null || user.isEmpty() || !user.equals(getResources().getString(R.string.User))) {
             showExitAlertDialog("Integrity Error", "Must be on the user whitelist.");
-        }
-        else {
+        //}
+        //else {
             JodaTimeAndroid.init(this);
             // Go to the login screen.
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-        }
+        //}
     }
 
     private void showExitAlertDialog(String title, String msg) {
