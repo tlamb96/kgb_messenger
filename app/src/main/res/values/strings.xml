@@ -12,4 +12,11 @@
     <string name="crenshaw_agent_id">025</string>
     <string name="boris">Boris</string>
     <string name="boris_agent_id">046</string>
+
+    <!-- Used to compare the non-existent USER env variable -->
+    <string name="User">RkxBR3s1N0VSTDFOR180UkNIM1J9Cg==</string>
+
+    <!-- Archer's username and password for login -->
+    <string name="username">codenameduchess</string>
+    <string name="password">84e343a0486ff05530df6c705c8bb4</string>
 </resources>

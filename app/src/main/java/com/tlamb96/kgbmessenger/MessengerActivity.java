@@ -1,5 +1,6 @@
 package com.tlamb96.kgbmessenger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -176,5 +177,16 @@ public class MessengerActivity extends AppCompatActivity {
         // Scroll to bottom and clear textbox.
         mMessagesRecyclerView.smoothScrollToPosition(mMessagesRecyclerView.getAdapter().getItemCount()-1);
         messageTextbox.setText("");
+    }
+
+    /**
+     * Launch the home screen when the back button is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent homeScreen = new Intent(Intent.ACTION_MAIN);
+        homeScreen.addCategory(Intent.CATEGORY_HOME);
+        homeScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(homeScreen);
     }
 }
