@@ -73,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         JodaTimeAndroid.init(this);
-    }
 
-    public void onOpenMessenger(View view) {
-        Intent intent = new Intent(this, MessengerActivity.class);
+        // Go to the login screen.
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

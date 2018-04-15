@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tlamb96.kgbmessenger.MainActivity">
+    tools:context="com.tlamb96.kgbmessenger.LoginActivity">
+
+    <ImageView
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:src="@drawable/kgb_logo"
+        />
 
 </android.support.constraint.ConstraintLayout>
