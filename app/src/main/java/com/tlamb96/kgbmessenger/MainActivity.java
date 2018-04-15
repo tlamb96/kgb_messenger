@@ -20,62 +20,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String userHome = System.getProperty("user.home");
+        String user = System.getenv("USER");
+
         // Exit if the user.home property for the app does not equal "Russia". The user.home
         // property has nothing to do with the phones physical location, but I needed a check that
         // would always fail. This should probably be patched/removed to solve this challenge.
-        String userHome = System.getProperty("user.home");
         if(userHome == null || userHome.isEmpty() || !userHome.equals("Russia")) {
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Integrity Error");
-            alertDialog.setMessage("This app can only run on Russian devices.");
-            alertDialog.setCancelable(false);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "EXIT",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            finish();
-                        }
-                    });
-            alertDialog.show();
-
-            // Center the "EXIT" button in a slightly hacky way.
-            final Button button = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-            LinearLayout parent = (LinearLayout) button.getParent();
-            parent.setGravity(Gravity.CENTER_HORIZONTAL);
-            View leftSpacer = parent.getChildAt(1);
-            leftSpacer.setVisibility(View.GONE);
+            showExitAlertDialog("Integrity Error", "This app can only run on Russian devices.");
         }
-
         // Checks an environment variable to see who the user is. Again, this isn't really a thing
         // in Android but it's something that some people might skip over expecting the strings
         // to be "Sterling Archer" when it's really the Base 64 encoded flag: FLAG{57ERL1NG_4RCH3R}.
-        String user = System.getenv("USER");
-        if(userHome == null || userHome.isEmpty() || !userHome.equals(getResources().getString(R.string.User))) {
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Integrity Error");
-            alertDialog.setMessage("Must be on the user whitelist.");
-            alertDialog.setCancelable(false);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "EXIT",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            finish();
-                        }
-                    });
-            alertDialog.show();
-
-            // Center the "EXIT" button in a slightly hacky way.
-            final Button button = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-            LinearLayout parent = (LinearLayout) button.getParent();
-            parent.setGravity(Gravity.CENTER_HORIZONTAL);
-            View leftSpacer = parent.getChildAt(1);
-            leftSpacer.setVisibility(View.GONE);
+        else if(user == null || user.isEmpty() || !user.equals(getResources().getString(R.string.User))) {
+            showExitAlertDialog("Integrity Error", "Must be on the user whitelist.");
         }
+        else {
+            JodaTimeAndroid.init(this);
+            // Go to the login screen.
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
 
-        JodaTimeAndroid.init(this);
+    private void showExitAlertDialog(String title, String msg) {
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(msg);
+        alertDialog.setCancelable(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "EXIT",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+        alertDialog.show();
 
-        // Go to the login screen.
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        // Center the "EXIT" button in a slightly hacky way.
+        final Button button = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+        LinearLayout parent = (LinearLayout) button.getParent();
+        parent.setGravity(Gravity.CENTER_HORIZONTAL);
+        View leftSpacer = parent.getChildAt(1);
+        leftSpacer.setVisibility(View.GONE);
     }
 }
