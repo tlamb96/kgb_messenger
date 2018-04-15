@@ -29,6 +29,12 @@ public class MessengerActivity extends AppCompatActivity {
     // Stores the user's correct input for the ask Boris question.
     private String mUserAskBoris;
 
+    // "May I *PLEASE* have the password?"
+    private String mAskBorrisNicely = "\u0000\u0064\u0073\u006c\u0070\u007d\u006f\u0051\u0000\u0020\u0064\u006b\u0073\u0024\u007c\u004d\u0000\u0068\u0020\u002b\u0041\u0059\u0051\u0067\u0000\u0050\u002a\u0021\u004d\u0024\u0067\u0051\u0000";
+    // Stores the user's correct input for the ask Boris nicely question.
+    private String mUserAskBorisNicely;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +92,53 @@ public class MessengerActivity extends AppCompatActivity {
         return new String(input);
     }
 
+    // The hash function that checks if the user asked nicely for the password.
+    private String hardHash(String s) {
+        int tmp;
+        char tmpChar;
+        char[] input = s.toCharArray();
+        // XOR each char by a bit shifted version of itself. The shift amount is the iterator mod 8.
+        for(int i=0; i<input.length; i++) {
+            tmp = input[i] >> (i%8);
+            input[i] = (char) (input[i] ^ tmp);
+        }
+        // Reverse the array.
+        for(int i=0; i<input.length/2; i++) {
+            // Swap and XOR the chars by different values.
+            tmpChar = input[i];
+            input[i] = input[input.length-i-1];
+            input[input.length-i-1] = tmpChar;
+        }
+        return new String(input);
+    }
+
+    private String generateFlag() {
+        String flag;
+
+        // Make sure they asked Boris for the passwords correctly.
+        if(mUserAskBoris == null || mUserAskBorisNicely == null) {
+            return "Nice try but you're not that slick!";
+        }
+
+        // Get the string "password" from the user entered text.
+        char[] flag1 = mUserAskBoris.substring(19).toCharArray();
+        // XOR it to "p455w0rd".
+        flag1[1] ^= 0x55;
+        flag1[2] ^= 0x46;
+        flag1[3] ^= 0x46;
+        flag1[5] ^= 0x5f;
+        Log.i(TAG, "flag: "+new String(flag1));
+
+        // Get the string "PLEASE" from the user entered text.
+        char[] flag2 = mUserAskBorisNicely.substring(7,13).toCharArray();
+        // XOR it to "P134SE".
+        flag2[1] ^= 0x7d;
+        flag2[2] ^= 0x76;
+        flag2[3] ^= 0x75;
+
+        return new String(flag1) + "_" + new String(flag2);
+    }
+
     private String getCurrentHoursMinutes() {
         DateTime dateTime = new DateTime();
         return dateTime.toString("hh:mm a");
@@ -110,6 +163,14 @@ public class MessengerActivity extends AppCompatActivity {
             // I would want to block here for a second to make it seem like he's texting but we
             // could accidentally block UI thread for too long and get killed by watchdog. I'm
             // too lazy to set it up in another thread.
+        }
+
+        if(hardHash(textMessage.toString()).equals(mAskBorrisNicely)) {
+            Log.d(TAG, "Successfully asked Boris nicely for the password.");
+            mUserAskBorisNicely = textMessage.toString();
+            //
+            mMessages.add(new Message(R.string.boris, "Wow, no one has ever been so nice to me! Here you go friend: FLAG{"+generateFlag()+"}", getCurrentHoursMinutes(), true));
+            mMessageListAdapter.notifyDataSetChanged();
         }
 
         // Scroll to bottom and clear textbox.
