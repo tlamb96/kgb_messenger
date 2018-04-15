@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,9 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessengerActivity extends AppCompatActivity {
+    private static final String TAG = "MessengerActivity";
+
     private RecyclerView mMessagesRecyclerView;
     private MessageListAdapter mMessageListAdapter;
     private List<Message> mMessages;
+
+    // "Boris, give me the password"
+    private String mAskBorris = "V@]EAASB\u0012WZF\u0012e,a$7(&am2(3.\u0003";
+    // Stores the user's correct input for the ask Boris question.
+    private String mUserAskBoris;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +73,20 @@ public class MessengerActivity extends AppCompatActivity {
         mMessagesRecyclerView.setNestedScrollingEnabled(false);
     }
 
-    public String getCurrentHoursMinutes() {
+    // The hash function that checks if the user asked Boris for the password.
+    private String easyHash(String s) {
+        char tmp;
+        char[] input = s.toCharArray();
+        for(int i=0; i<input.length/2; i++) {
+            // Swap and XOR the chars by different values.
+            tmp = input[i];
+            input[i] = (char) (input[input.length-i-1] ^ 0x32);
+            input[input.length-i-1] = (char) (tmp ^ 0x41);
+        }
+        return new String(input);
+    }
+
+    private String getCurrentHoursMinutes() {
         DateTime dateTime = new DateTime();
         return dateTime.toString("hh:mm a");
     }
@@ -79,6 +100,17 @@ public class MessengerActivity extends AppCompatActivity {
         }
         mMessages.add(new Message(R.string.user, textMessage, getCurrentHoursMinutes(), false));
         mMessageListAdapter.notifyDataSetChanged();
+
+        // If the user asked Boris for the password, send a message from Boris asking
+        if(easyHash(textMessage.toString()).equals(mAskBorris)) {
+            Log.d(TAG, "Successfully asked Boris for the password.");
+            mUserAskBoris = textMessage.toString();
+            mMessages.add(new Message(R.string.boris, "Only if you ask nicely", getCurrentHoursMinutes(), true));
+            mMessageListAdapter.notifyDataSetChanged();
+            // I would want to block here for a second to make it seem like he's texting but we
+            // could accidentally block UI thread for too long and get killed by watchdog. I'm
+            // too lazy to set it up in another thread.
+        }
 
         // Scroll to bottom and clear textbox.
         mMessagesRecyclerView.smoothScrollToPosition(mMessagesRecyclerView.getAdapter().getItemCount()-1);
