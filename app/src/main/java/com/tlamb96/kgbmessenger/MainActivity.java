@@ -66,4 +66,15 @@ public class MainActivity extends AppCompatActivity {
         View leftSpacer = parent.getChildAt(1);
         leftSpacer.setVisibility(View.GONE);
     }
+
+    /**
+     * Launch the home screen when the back button is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent homeScreen = new Intent(Intent.ACTION_MAIN);
+        homeScreen.addCategory(Intent.CATEGORY_HOME);
+        homeScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(homeScreen);
+    }
 }

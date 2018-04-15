@@ -93,4 +93,15 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    /**
+     * Launch the home screen when the back button is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent homeScreen = new Intent(Intent.ACTION_MAIN);
+        homeScreen.addCategory(Intent.CATEGORY_HOME);
+        homeScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(homeScreen);
+    }
 }
