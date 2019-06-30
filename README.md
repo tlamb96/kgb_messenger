@@ -14,7 +14,7 @@ The challenges should be solved sequentially. The flag format is FLAG{insert_fla
 The app keeps giving us these pesky alerts when we start the app. We should investigate.
 
 ## Login (Easy)
-This is a recon challenge.
+This is a recon challenge. All characters in the password are lowercase.
 
 ## Social Engineering (Hard)
 It looks like someone is bad at keeping secrets. They're probably susceptible to social engineering... what should I say?
