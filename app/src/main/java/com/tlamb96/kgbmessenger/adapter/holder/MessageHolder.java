@@ -31,7 +31,7 @@ public class MessageHolder extends RecyclerView.ViewHolder {
         mMessageText.setText(message.getMessage());
         mTimeText.setText(message.getTimestamp());
 
-        if(message.isReceived()) {
+        if (message.isReceived()) {
             mNameText.setText(message.getUser());
             switch (message.getUser()) {
                 case R.string.katya:

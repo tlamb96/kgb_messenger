@@ -26,6 +26,7 @@ public class Message {
 
     /**
      * Gets the ISO8601 timestamp.
+     *
      * @return The ISO8601 timestamp that describes when the message was sent.
      */
     public String getTimestamp() {

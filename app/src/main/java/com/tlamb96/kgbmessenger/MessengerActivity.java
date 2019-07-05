@@ -84,11 +84,11 @@ public class MessengerActivity extends AppCompatActivity {
     private String easyHash(String s) {
         char tmp;
         char[] input = s.toCharArray();
-        for(int i=0; i<input.length/2; i++) {
+        for (int i = 0; i < input.length / 2; i++) {
             // Swap and XOR the chars by different values.
             tmp = input[i];
-            input[i] = (char) (input[input.length-i-1] ^ 0x32);
-            input[input.length-i-1] = (char) (tmp ^ 0x41);
+            input[i] = (char) (input[input.length - i - 1] ^ 0x32);
+            input[input.length - i - 1] = (char) (tmp ^ 0x41);
         }
         return new String(input);
     }
@@ -99,16 +99,16 @@ public class MessengerActivity extends AppCompatActivity {
         char tmpChar;
         char[] input = s.toCharArray();
         // XOR each char by a bit shifted version of itself. The shift amount is the iterator mod 8.
-        for(int i=0; i<input.length; i++) {
-            tmp = input[i] >> (i%8);
+        for (int i = 0; i < input.length; i++) {
+            tmp = input[i] >> (i % 8);
             input[i] = (char) (input[i] ^ tmp);
         }
         // Reverse the array.
-        for(int i=0; i<input.length/2; i++) {
+        for (int i = 0; i < input.length / 2; i++) {
             // Swap and XOR the chars by different values.
             tmpChar = input[i];
-            input[i] = input[input.length-i-1];
-            input[input.length-i-1] = tmpChar;
+            input[i] = input[input.length - i - 1];
+            input[input.length - i - 1] = tmpChar;
         }
         return new String(input);
     }
@@ -117,7 +117,7 @@ public class MessengerActivity extends AppCompatActivity {
         String flag;
 
         // Make sure they asked Boris for the passwords correctly.
-        if(mUserAskBoris == null || mUserAskBorisNicely == null) {
+        if (mUserAskBoris == null || mUserAskBorisNicely == null) {
             return "Nice try but you're not that slick!";
         }
 
@@ -128,10 +128,10 @@ public class MessengerActivity extends AppCompatActivity {
         flag1[2] ^= 0x46;
         flag1[3] ^= 0x46;
         flag1[5] ^= 0x5f;
-        Log.i(TAG, "flag: "+new String(flag1));
+        Log.i(TAG, "flag: " + new String(flag1));
 
         // Get the string "PLEASE" from the user entered text.
-        char[] flag2 = mUserAskBorisNicely.substring(7,13).toCharArray();
+        char[] flag2 = mUserAskBorisNicely.substring(7, 13).toCharArray();
         // XOR it to "P134SE".
         flag2[1] ^= 0x7d;
         flag2[2] ^= 0x76;
@@ -149,14 +149,14 @@ public class MessengerActivity extends AppCompatActivity {
     public void onSendMessage(View view) {
         String textMessage;
         EditText messageTextbox = (EditText) findViewById(R.id.edittext_chatbox);
-        if(TextUtils.isEmpty(textMessage = messageTextbox.getText().toString())) {
+        if (TextUtils.isEmpty(textMessage = messageTextbox.getText().toString())) {
             return;
         }
         mMessages.add(new Message(R.string.user, textMessage, getCurrentHoursMinutes(), false));
         mMessageListAdapter.notifyDataSetChanged();
 
         // If the user asked Boris for the password, send a message from Boris asking
-        if(easyHash(textMessage.toString()).equals(mAskBorris)) {
+        if (easyHash(textMessage.toString()).equals(mAskBorris)) {
             Log.d(TAG, "Successfully asked Boris for the password.");
             mUserAskBoris = textMessage.toString();
             mMessages.add(new Message(R.string.boris, "Only if you ask nicely", getCurrentHoursMinutes(), true));
@@ -166,16 +166,16 @@ public class MessengerActivity extends AppCompatActivity {
             // too lazy to set it up in another thread.
         }
 
-        if(hardHash(textMessage.toString()).equals(mAskBorrisNicely)) {
+        if (hardHash(textMessage.toString()).equals(mAskBorrisNicely)) {
             Log.d(TAG, "Successfully asked Boris nicely for the password.");
             mUserAskBorisNicely = textMessage.toString();
             // Print out the flag: FLAG{p455w0rd_P134SE}
-            mMessages.add(new Message(R.string.boris, "Wow, no one has ever been so nice to me! Here you go friend: FLAG{"+generateFlag()+"}", getCurrentHoursMinutes(), true));
+            mMessages.add(new Message(R.string.boris, "Wow, no one has ever been so nice to me! Here you go friend: FLAG{" + generateFlag() + "}", getCurrentHoursMinutes(), true));
             mMessageListAdapter.notifyDataSetChanged();
         }
 
         // Scroll to bottom and clear textbox.
-        mMessagesRecyclerView.smoothScrollToPosition(mMessagesRecyclerView.getAdapter().getItemCount()-1);
+        mMessagesRecyclerView.smoothScrollToPosition(mMessagesRecyclerView.getAdapter().getItemCount() - 1);
         messageTextbox.setText("");
     }
 

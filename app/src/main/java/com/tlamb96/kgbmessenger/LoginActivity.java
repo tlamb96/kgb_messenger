@@ -26,8 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         // Setup MD5 hashing.
         try {
             mMessageDigest = MessageDigest.getInstance("MD5");
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             Log.e(TAG, "MD5 algorithm not found.");
         }
@@ -48,13 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         flag[7] ^= mUsersEnteredPassword.charAt(3); // 0x23 ^ "s"
         flag[8] ^= mUsersEnteredUsername.charAt(6); // 0x3f ^ "m"
         flag[9] ^= mUsersEnteredUsername.charAt(8); // 0x54 ^ "d"
-        Toast.makeText(this, "FLAG{"+new String(flag)+"}", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "FLAG{" + new String(flag) + "}", Toast.LENGTH_LONG).show();
     }
 
     private boolean checkPassword() {
         byte[] userPasswordHashBytes = mMessageDigest.digest(mUsersEnteredPassword.getBytes());
         String userPasswordHash = "";
-        for(byte userPasswordHashByte : userPasswordHashBytes) {
+        for (byte userPasswordHashByte : userPasswordHashBytes) {
             userPasswordHash += String.format("%x", userPasswordHashByte);
         }
         return userPasswordHash.equals(getResources().getString(R.string.password));
@@ -67,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
         mUsersEnteredPassword = passwordEditText.getText().toString();
 
         // Check that text boxes aren't empty.
-        if(mUsersEnteredUsername == null || mUsersEnteredPassword == null || mUsersEnteredUsername.isEmpty() || mUsersEnteredPassword.isEmpty()) {
+        if (mUsersEnteredUsername == null || mUsersEnteredPassword == null || mUsersEnteredUsername.isEmpty() || mUsersEnteredPassword.isEmpty()) {
             return;
         }
 
         // Check if the user is Archer.
-        if(!mUsersEnteredUsername.equals(getResources().getString(R.string.username))) {
+        if (!mUsersEnteredUsername.equals(getResources().getString(R.string.username))) {
             Toast.makeText(this, "User not recognized.", Toast.LENGTH_SHORT).show();
             usernameEditText.setText("");
             passwordEditText.setText("");
@@ -81,12 +80,11 @@ public class LoginActivity extends AppCompatActivity {
         // Check if the password is "guest". This is a simple recon challenge because it's the
         // password to ISIS's network in the show. It can be solved by searching "archer password"
         // on Google and watching the first video: https://youtu.be/UduILWi2p6s
-        else if(!checkPassword()) {
+        else if (!checkPassword()) {
             Toast.makeText(this, "Incorrect password.", Toast.LENGTH_SHORT).show();
             usernameEditText.setText("");
             passwordEditText.setText("");
-        }
-        else {
+        } else {
             showFlag();
             // Go to the messenger screen.
             Intent intent = new Intent(this, MessengerActivity.class);

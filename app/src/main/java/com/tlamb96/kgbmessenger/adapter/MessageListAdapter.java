@@ -55,7 +55,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Message message = (Message) mMessageList.get(position);
-        if(message == null) {
+        if (message == null) {
             Log.e(TAG, String.format("message was not found at position %d", position));
             return;
         }
