@@ -1,6 +1,6 @@
 # KGB Messenger
 
-[APK Download]() \| [Video Lecture](https://youtu.be/m9UZnWLLurY) \| [Video Walkthrough]() \| [MasonCC](https://competitivecyber.club/)  
+[APK Download](https://drive.google.com/file/d/14hXB4vXoEk6l-RGJh5B5XRwNhYr1b9bm/view) \| [Video Lecture](https://youtu.be/m9UZnWLLurY) \| [Video Walkthrough](https://youtu.be/ddxhuz1bmj4) \| [MasonCC](https://competitivecyber.club/)  
 
 ## Introduction
 KGB Messenger is a open source CTF practice challenge that aims to help people learn how to reverse engineer Android applications. If you're completely new to Android application reverse engineering, I'd suggest you start by watching the video lecture from George Mason University's MasonCC club. If you're stuck on any of the challenges, feel free to peek at the video walkthrough for some help. Timestamps have been provided in the walkthrough video's description to prevent unwanted spoilers. To get started, download the APK and read the challenge descriptions below.
